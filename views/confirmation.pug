@@ -1,0 +1,12 @@
+extend layout 
+
+block content 
+    .container
+        .row.justify-content-md-center 
+            .col-md-6.mt-5.text-center
+                if signup
+                    h4 Sign Up Successful
+                    br/
+                    p <a href="/login">Click here to login</a>.
+                else if apply
+                    h4 You've successfully applied for an internship!

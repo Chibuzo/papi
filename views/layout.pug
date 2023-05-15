@@ -1,0 +1,31 @@
+doctype html
+head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap' rel='stylesheet')
+    link(rel='stylesheet' href='/css/fontawesome-min.css')
+    link(rel='stylesheet' href='/css/bootstrap.min.css')
+    link(href='/css/style.css' rel="stylesheet")
+    block styleBlock
+    title Portal
+body
+    nav.site-nav
+        .container
+            .site-navigation
+                .row
+                    .col-md-6.text-center.order-1.order-md-2.mb-3.mb-md-0
+                        a.logo.m-0(href='/') Portal
+                    .col-md-3.order-3.order-md-1
+
+                    .col-md-3.text-end.order-2.order-md-3.mb-3.mb-md-0
+                        .d-flex
+
+                            a.d-none.burger.ms-auto.float-end.site-menu-toggle.js-menu-toggle.d-inline-block(href='#' data-toggle='collapse' data-target='#main-navbar')
+                                span
+
+
+    block content
+
+
+
+    script(src='/js/bootstrap-bundle.min.js')

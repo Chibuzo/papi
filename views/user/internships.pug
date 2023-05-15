@@ -1,0 +1,35 @@
+extends layout 
+
+block content
+    .container
+        .row 
+            .col
+                a.btn.btn-secondary.float-end(href="/new-internship") Add New 
+
+
+        // Main content
+        section.content
+            .row
+                .col
+                    .box
+                        .box-header.with-border
+                            h3.box-title Internships
+                        .box-body
+                            table.table
+                                thead
+                                    tr
+                                        //- th(style='width: 10px') #
+                                        th Title
+                                        th Industry
+                                        th Start Date 
+                                        th End Date
+                                        th(style='width: 40px') Status
+                                tbody 
+                                    each internship in internships 
+                                        tr
+                                            td= internship.title 
+                                            td= internship.industry 
+                                            td= view.formatDate(internship.start_date) 
+                                            td= view.formatDate(internship.end_date)
+                                            td= internship.status
+

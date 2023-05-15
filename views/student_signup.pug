@@ -1,0 +1,86 @@
+doctype html
+head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(name='description' content='')
+    title Student - Sign Up
+    // Bootstrap core CSS
+    link(href='/css/bootstrap.min.css' rel='stylesheet')
+    meta(name='theme-color' content='#7952b3')
+    style.
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+
+    .container 
+        .row.justify-content-md-center
+            .col-md-7
+
+                form(method="post" action="/signup")
+                    .mb-3.row
+                        .col
+                            .form-floating
+                                input.form-control(type='text' name="first_name" placeholder='First Name' required)
+                                label First Name
+                        .col
+                            .form-floating
+                                input.form-control(type='text' name="last_name" placeholder='Last Name' required)
+                                label Last Name    
+                    .mb-3.form-floating
+                        input.form-control(type='text' name="user_name" placeholder='User Name' required)
+                        label User Name
+                    .mb-3.form-floating
+                        input.form-control(type='text' name="department" placeholder='Department')
+                        label Department
+                    .mb-3.row
+                        .col
+                            .form-floating
+                                input.form-control(type='email' name="email" placeholder='Username' required)
+                                label email
+                        .col
+                            .form-floating
+                                input.form-control(type='text' name="phone" placeholder='Phone' required)
+                                label Phone    
+                                input(type="hidden" name="role" value="student")
+
+                    .mb-3.row
+                        .col
+                            .form-floating
+                                input.form-control(type='password' name="password" placeholder='Password' required)
+                                label Password
+                        .col
+                            .form-floating
+                                input.form-control(type='password' name="" placeholder='Verify Password' required)
+                                label Verify Password    
+                    button.btn.btn-lg.btn-secondary.float-end(type='submit') Register
+                    p Already has an account? <a href="/login">Login here</a>
+
+
+    block scriptBlock
+        script. 
+            const approveRadio = document.getElementsByName("require_approval");
+            const approvalInputs = document.getElementsByClassName("approval-input");
+            console.log(approvalInputs)
+            for (let i = 0; i < approveRadio.length; i++) {
+                approveRadio[i].addEventListener("change", function(e) {
+                    if (approveRadio[i].value == '1') {
+                        for (let j = 0; j < approvalInputs.length; j++) {
+                            approvalInputs[j].disabled = false;
+                        }
+                    } else {
+                        for (let n = 0; n < approvalInputs.length; n++) {
+                            approvalInputs[n].disabled = true;
+                        }
+                    }
+                });
+            };

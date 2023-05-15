@@ -1,0 +1,41 @@
+extend layout 
+
+block content 
+    .container
+        .row 
+            .col-md-12
+                a.btn.btn-secondary.btn.lg.float-end(href="/list-internships")
+                    .fa.fa-caret-left 
+                    |  Go Back 
+        .row.justify-content-md-center 
+            .col-md-6.mb-5
+                h3 New Internship
+                br/
+                form(method="post" action="/new-internship")
+                    .mb-3
+                        .row 
+                            .col-md-12     
+                                label Title  
+                                input.form-control.input-lg(type="text" name="title" required)
+                    .mb-3
+                        .row 
+                            .col-md-12     
+                                label Industry  
+                                input.form-control.input-lg(type="text" name="industry" required)
+                    .mb-3 
+                        .row 
+                            .col-md-12 
+                                label Details
+                                textarea.form-control(name="details" rows="10")             
+                    .mb-3 
+                        .row 
+                            .col-md-6
+                                label Start Date
+                                input.form-control(type="date" name="start_date" required)  
+                            .col-md-6 
+                                label End Date 
+                                input.form-control(type="date" name="end_date" required)  
+
+                    .mb-3.text-center 
+                        br/
+                        input.btn.btn-success.btn-lg(type="submit" value="Publish")

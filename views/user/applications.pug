@@ -1,0 +1,36 @@
+extends layout 
+
+block content
+    .container
+
+
+        // Main content
+        section.content
+            .row
+                .col
+                    .box
+                        .box-header.with-border
+                            h3.box-title Internship Applications
+                        .box-body
+                            table.table
+                                thead
+                                    tr
+                                        //- th(style='width: 10px') #
+                                        th Student
+                                        th Internship
+                                        th Industry
+                                        th Organization
+                                        th Date applied
+                                        th Start Date 
+                                        th End Date
+                                tbody 
+                                    each internship in applications 
+                                        tr
+                                            td= internship.student_name
+                                            td= internship.title 
+                                            td= internship.industry 
+                                            td= internship.organization 
+                                            td= view.formatDate(internship.date)
+                                            td= view.formatDate(internship.start_date) 
+                                            td= view.formatDate(internship.end_date)
+
