@@ -20,7 +20,7 @@ const createUser = async userData => {
 const login = async ({ user_name, password }) => {
     const user = await User.findOne({
         where: { user_name },
-        attributes: ['id', 'user_name', 'password', 'role'],
+        attributes: ['id', 'user_id', 'user_name', 'password', 'role'],
         raw: true
     });
 
