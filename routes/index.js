@@ -71,7 +71,7 @@ router.get('/new-internship', async (req, res, next) => {
 
 router.post('/new-internship', authenticate, async (req, res, next) => {
     try {
-        const { id: organization_id } = req.session.user.user_id;
+        const { user_id: organization_id } = req.session.user;
         await internshipService.create({ ...req.body, organization_id });
         res.redirect('/list-internships');
     } catch (err) {
