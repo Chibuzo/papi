@@ -57,7 +57,7 @@ router.post('/signup', async (req, res, next) => {
 
 router.get('/list-internships', authenticate, async (req, res, next) => {
     try {
-        const { id: organization_id } = req.session.user;
+        const { user_id: organization_id } = req.session.user;
         const internships = await internshipService.list({ where: { organization_id } });
         res.render('user/internships', { internships, role: req.session.user.role });
     } catch (err) {
@@ -82,7 +82,7 @@ router.post('/new-internship', authenticate, async (req, res, next) => {
 router.get('/apply', authenticate, async (req, res, next) => {
     try {
         const { id } = req.query;
-        const resp = await internshipService.apply(id, req.session.user.id);
+        const resp = await internshipService.apply(id, req.session.user.user_id);
         res.render('confirmation', { apply: true });
     } catch (err) {
         next(err);
