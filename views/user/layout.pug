@@ -23,13 +23,14 @@ body
                 h5 Employee
             //- a.d-flex.align-items-center.col-md-3.mb-2.mb-md-0.text-dark.text-decoration-none(href='/') Home
 
-            ul.nav.col-12.col-md-auto.mb-2.justify-content-center.mb-md-0
-                li
-                    a.nav-link.px-2.link-secondary(href='/applications') Applications
-                li
-                    a.nav-link.px-2.link-secondary(href='/students') Students
-                li
-                    a.nav-link.px-2.link-dark(href='/organizations') Organizations
+            if role == 'employee'
+                ul.nav.col-12.col-md-auto.mb-2.justify-content-center.mb-md-0
+                    li
+                        a.nav-link.px-2.link-secondary(href='/applications') Applications
+                    li
+                        a.nav-link.px-2.link-secondary(href='/students') Students
+                    li
+                        a.nav-link.px-2.link-dark(href='/organizations') Organizations
 
             .col-md-3.text-end
                 a.btn.btn-outline-primary.me-2(href="/logout") Logout
