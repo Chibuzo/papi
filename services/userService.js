@@ -32,7 +32,7 @@ const login = async ({ user_name, password }) => {
 }
 
 const listStudents = async () => {
-    const sql = `SELECT COUNT(*) internships, s.* FROM students s JOIN internshipapplications ia ON ia.student_id = s.id GROUP BY student_id`;
+    const sql = `SELECT COUNT(*) internships, s.* FROM students s JOIN internshipApplications ia ON ia.student_id = s.id GROUP BY student_id`;
     const [students] = await sequelize.query(sql);
     return students;
 }
