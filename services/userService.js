@@ -1,4 +1,4 @@
-const { Organization, Student, Employee, User } = require('../models');
+const { Organization, Student, Employee, User, sequelize } = require('../models');
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 const { ErrorHandler } = require('../helpers/errorHandler');
@@ -31,7 +31,21 @@ const login = async ({ user_name, password }) => {
     return user;
 }
 
+const listStudents = async () => {
+    const sql = `SELECT COUNT(*) internships, s.* FROM students s JOIN internshipapplications ia ON ia.student_id = s.id GROUP BY student_id`;
+    const [students] = await sequelize.query(sql);
+    return students;
+}
+
+const listOrganizations = async () => {
+    const sql = `SELECT COUNT(*) internships, o.* FROM organizations o JOIN internships i ON i.organization_id = o.id GROUP BY organization_id`;
+    const [organizations] = await sequelize.query(sql);
+    return organizations;
+}
+
 module.exports = {
     login,
-    createUser
+    createUser,
+    listStudents,
+    listOrganizations
 }

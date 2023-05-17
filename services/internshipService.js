@@ -4,8 +4,15 @@ const create = async (data) => {
     return Internship.create(data);
 }
 
-const list = async (criteria = {}) => {
-    return Internship.findAll({ ...criteria, order: [['id', 'DESC']] });
+const list = async (criteria, value) => {
+    let where = '';
+    let sql = `SELECT i.title, i.details, i.start_date, i.end_date, o.name organization 
+                FROM internships i 
+                JOIN organizations o ON o.id = i.organization_id ORDER by i.id`;
+
+    if (criteria) sql += ` WHERE ${criteria} = ${value}`;
+    const [internships] = await sequelize.query(sql);
+    return internships;
 }
 
 const apply = async (internship_id, student_id) => {

@@ -58,7 +58,7 @@ router.post('/signup', async (req, res, next) => {
 router.get('/list-internships', authenticate, async (req, res, next) => {
     try {
         const { user_id: organization_id } = req.session.user;
-        const internships = await internshipService.list({ where: { organization_id } });
+        const internships = await internshipService.list('organization_id', organization_id);
         res.render('user/internships', { internships, role: req.session.user.role });
     } catch (err) {
         next(err);
@@ -93,6 +93,24 @@ router.get('/applications', authenticate, async (req, res, next) => {
     try {
         const applications = await internshipService.listApplications();
         res.render('user/applications', { applications, role: req.session.user.role });
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.get('/organizations', authenticate, async (req, res, next) => {
+    try {
+        const organizations = await userService.listOrganizations();
+        res.render('user/organizations', { organizations, role: req.session.user.role });
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.get('/students', authenticate, async (req, res, next) => {
+    try {
+        const students = await userService.listStudents();
+        res.render('user/students', { students, role: req.session.user.role });
     } catch (err) {
         next(err);
     }

@@ -1,0 +1,49 @@
+extend layout
+
+block content 
+    .container 
+        .row 
+
+        .row.mt-1
+            .col 
+                h3 Students
+                table.table.table-striped 
+                    thead 
+                        tr 
+                            th Date Added 
+                            th Name 
+                            th Email 
+                            th Phone 
+                            th Department 
+                            th Applied Internships
+                    tbody 
+                        each user in students 
+                            tr 
+                                td= view.formatDate(user.createdAt)
+                                td #{user.first_name} #{user.last_name} 
+                                td= user.email 
+                                td= user.phone 
+                                td= user.department
+                                td= user.internships
+
+
+    #signupModal.modal.fade(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h5#staticBackdropLabel.modal-title Create User
+                    button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                form(method="post" action="/admin/create")
+                    .modal-body
+                        .mb-3
+                            input.form-control(type="text" name="fullname" placeholder="Full name" aria-label="Full name" required=true)
+                        .mb-3
+                            input.form-control(type="email" name="email" placeholder="Email" aria-label="Email" required=true)
+                        .mb-3
+                            input.form-control(type="text" name="phone" placeholder="Phone" aria-label="Phone" required=true)
+                        .mb-3 
+                            input.form-control(type="password" name="password" placeholder="Password" required=true)
+                        .mb-3 
+                            input.form-control(type="password" placeholder="Confirm Password" required=true)
+                    .modal-footer
+                        button.btn.btn-secondary(type='submit') Create User

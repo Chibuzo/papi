@@ -12,7 +12,7 @@ block content
                         .post-entry.small-horizontal.mb-5
                             .content
                                 .post-meta.mb-3
-                                    a.category(href='#')= internship.industry
+                                    a.category(href='#')= internship.organization
 
                                 h2.heading
                                     a(href=`/internship/${internship.id}/${url_path}`)= internship.title
@@ -20,6 +20,7 @@ block content
                                 p #[strong From:] #{view.formatDate(internship.start_date)} - #{view.formatDate(internship.end_date)}
                                 p.text-end 
                                     a.btn.btn-primary(href=`/apply?id=${internship.id}`) Apply
+                                hr
 
 
 
