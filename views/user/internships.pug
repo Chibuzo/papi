@@ -24,6 +24,7 @@ block content
                                         th Start Date 
                                         th End Date
                                         th(style='width: 40px') Status
+                                        th Action
                                 tbody 
                                     each internship in internships 
                                         tr
@@ -32,4 +33,24 @@ block content
                                             td= view.formatDate(internship.start_date) 
                                             td= view.formatDate(internship.end_date)
                                             td= internship.status
+                                            td 
+                                                a(href=`/edit-internship/${internship.id}`) Edit
+                                                | &nbsp; . &nbsp;
+                                                a(href="#" onClick=`deleteInternship(${internship.id}, this)`) Del
 
+
+block scriptBlock 
+    script.  
+        function deleteInternship(id, el) {
+            if (confirm("Are you sure you want to delete this internship")) {
+                fetch('/delete-internship/' + id, {
+                    method: 'DELETE'
+                })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.status === true) {
+                        el.closest('tr').remove();
+                    }
+                });
+            }
+        }                            

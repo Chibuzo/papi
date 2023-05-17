@@ -6,13 +6,21 @@ const create = async (data) => {
 
 const list = async (criteria, value) => {
     let where = '';
-    let sql = `SELECT i.title, i.details, i.start_date, i.end_date, i.status, o.name organization, o.industry
+    let sql = `SELECT i.*, o.name organization, o.industry
                 FROM internships i 
                 JOIN organizations o ON o.id = i.organization_id`;
 
     if (criteria) sql += ` WHERE ${criteria} = ${value}`;
     const [internships] = await sequelize.query(sql);
     return internships;
+}
+
+const view = async (id) => {
+    return Internship.findOne({ where: { id } });
+}
+
+const update = async ({ id, ...rest }) => {
+    return Internship.update(rest, { where: { id } });
 }
 
 const apply = async (internship_id, student_id) => {
@@ -29,9 +37,16 @@ const listApplications = async () => {
     return data;
 }
 
+const deleteInternship = async id => {
+    return Internship.destroy({ where: { id } });
+}
+
 module.exports = {
     create,
     list,
+    view,
+    update,
     apply,
-    listApplications
+    listApplications,
+    deleteInternship
 }

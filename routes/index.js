@@ -79,6 +79,36 @@ router.post('/new-internship', authenticate, async (req, res, next) => {
     }
 });
 
+router.get('/edit-internship/:id', authenticate, async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const internship = await internshipService.view(id);
+        res.render('user/edit-internship', { internship });
+    } catch (err) {
+        next(err);
+    }
+})
+
+router.post('/edit-internship', authenticate, async (req, res, next) => {
+    try {
+        await internshipService.update(req.body);
+        res.redirect('/list-internships');
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.delete('/delete-internship/:id', authenticate, async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        await internshipService.deleteInternship(id);
+        res.json({ status: true });
+    } catch (err) {
+        console.log(err)
+        res.json({ status: false });
+    }
+})
+
 router.get('/apply', authenticate, async (req, res, next) => {
     try {
         const { id } = req.query;
