@@ -6,9 +6,9 @@ const create = async (data) => {
 
 const list = async (criteria, value) => {
     let where = '';
-    let sql = `SELECT i.title, i.details, i.start_date, i.end_date, o.name organization 
+    let sql = `SELECT i.title, i.details, i.start_date, i.end_date, i.status, o.name organization, o.industry
                 FROM internships i 
-                JOIN organizations o ON o.id = i.organization_id ORDER by i.id`;
+                JOIN organizations o ON o.id = i.organization_id`;
 
     if (criteria) sql += ` WHERE ${criteria} = ${value}`;
     const [internships] = await sequelize.query(sql);
